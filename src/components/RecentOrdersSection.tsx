@@ -23,9 +23,9 @@ const RecentOrdersSection = () => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-foreground">Recently Ordered Items</h2>
+      <h2 className="text-xl sm:text-2xl font-bold text-foreground">Recently Ordered Items</h2>
       
-      <div className="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide">
+      <div className="flex overflow-x-auto space-x-4 sm:space-x-6 pb-4 scrollbar-hide">
         {recentOrders.map((order) => (
           <ReorderCard
             key={order.id}
