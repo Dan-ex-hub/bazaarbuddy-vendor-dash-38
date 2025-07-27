@@ -1,6 +1,6 @@
 # 🛒 Sahaayak - Lightweight Offline Version
 
-A simplified, lightweight wholesale food marketplace that runs completely offline with a single command.
+Sahaayak - A simplified, lightweight wholesale food marketplace that runs completely offline with a single command.
 
 ## ⚡ Quick Start (One Command)
 
@@ -52,7 +52,7 @@ That's it! Your app will be available at `http://localhost:5000`
 │   (Static)      │◄───┤   /api/*        │
 │   Served by     │    │                 │
 │   Flask         │    │   Serves React  │
-└─────────────────┘    └─────────────────┘
+└──────���──────────┘    └─────────────────┘
         📍 http://localhost:5000
 ```
 
@@ -103,7 +103,7 @@ cd backend && python app.py
 - 💰 **Budget Items** - Find deals with filters
 - 📦 **Inventory** - Track your stock
 - ⭐ **Reviews** - Rate suppliers
-- 💳 **Pay Later** - Credit system
+- ���� **Pay Later** - Credit system
 - 🎁 **Food Donations** - Reduce waste
 
 ## 🔧 Development
