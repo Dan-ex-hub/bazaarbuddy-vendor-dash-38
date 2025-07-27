@@ -18,10 +18,10 @@ const Index = () => {
         
         <div className="flex-1 flex flex-col">
           {/* Top Header */}
-          <header className="h-16 flex items-center justify-between px-6 border-b border-border bg-card">
-            <div className="flex items-center space-x-4">
+          <header className="h-16 flex items-center justify-between px-3 sm:px-6 border-b border-border bg-card">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <SidebarTrigger />
-              <h1 className="text-xl font-semibold text-foreground">
+              <h1 className="text-lg sm:text-xl font-semibold text-foreground truncate">
                 Welcome back!
               </h1>
             </div>
@@ -29,7 +29,7 @@ const Index = () => {
 
           {/* Main Content */}
           <main className="flex-1 overflow-auto">
-            <div className="max-w-7xl mx-auto px-6 py-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
               {/* Voice Search Bar */}
               <div className="mb-8">
                 <VoiceSearchBar />
