@@ -9,8 +9,6 @@ import WholesalersSection from "@/components/WholesalersSection";
 import BudgetSection from "@/components/BudgetSection";
 import PayLaterSection from "@/components/PayLaterSection";
 import FoodDonationBanner from "@/components/FoodDonationBanner";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
 
 const Index = () => {
   return (
@@ -22,9 +20,7 @@ const Index = () => {
           {/* Top Header */}
           <header className="h-16 flex items-center justify-between px-6 border-b border-border bg-card">
             <div className="flex items-center space-x-4">
-              <SidebarTrigger>
-                <Menu className="h-4 w-4" />
-              </SidebarTrigger>
+              <SidebarTrigger />
               <h1 className="text-xl font-semibold text-foreground">
                 Welcome back!
               </h1>
