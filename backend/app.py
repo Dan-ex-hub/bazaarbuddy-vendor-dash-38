@@ -12,8 +12,8 @@ app.secret_key = 'your-secret-key-here'  # Change this in production
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 
-# Enable CORS for React frontend
-CORS(app, origins=["http://localhost:8080"])
+# Enable CORS for React frontend and local development
+CORS(app, origins=["http://localhost:8080", "http://localhost:5000", "http://127.0.0.1:5000"])
 
 # Ensure upload directory exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
