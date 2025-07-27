@@ -1,10 +1,10 @@
-import { 
-  Fish, 
-  Wheat, 
-  Bean, 
-  Sparkles, 
-  Cherry, 
-  Droplets, 
+import {
+  Fish,
+  Wheat,
+  Bean,
+  Sparkles,
+  Cherry,
+  Droplets,
   Snowflake,
   Apple,
   Milk,
@@ -15,8 +15,10 @@ import {
   Heart,
   Home
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 
 const CategoriesSection = () => {
   const { t } = useLanguage();
