@@ -61,9 +61,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch('/api/logout', {
-        method: 'POST',
-      });
+      await apiService.logout();
     } catch (error) {
       console.error('Logout failed:', error);
     } finally {
