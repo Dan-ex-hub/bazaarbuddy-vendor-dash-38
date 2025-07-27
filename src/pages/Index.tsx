@@ -39,6 +39,31 @@ const Index = () => {
                 {t('nav.welcome')}
               </h1>
             </div>
+
+            {/* Cart Icon */}
+            <div className="flex items-center space-x-2">
+              <Button
+                variant="outline"
+                onClick={handleCartClick}
+                className="relative flex items-center space-x-2"
+              >
+                <ShoppingCart className="w-4 h-4" />
+                <span className="hidden sm:inline">Cart</span>
+                {getCartItemsCount() > 0 && (
+                  <Badge
+                    variant="destructive"
+                    className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center text-xs p-0"
+                  >
+                    {getCartItemsCount()}
+                  </Badge>
+                )}
+              </Button>
+              {getCartTotal() > 0 && (
+                <Badge variant="secondary" className="hidden sm:flex">
+                  ₹{getCartTotal().toLocaleString()}
+                </Badge>
+              )}
+            </div>
           </header>
 
           {/* Main Content */}
