@@ -183,7 +183,7 @@ const WholesalerDashboard = () => {
           <TabsContent value="products" className="space-y-4">
             <div className="flex justify-between items-center">
               <h3 className="text-lg font-semibold">Your Products</h3>
-              <Button>
+              <Button onClick={handleAddProduct}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Product
               </Button>
