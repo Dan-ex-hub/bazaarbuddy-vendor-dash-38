@@ -30,6 +30,7 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
+  const { logout } = useAuth();
   const currentPath = location.pathname;
 
   const isCollapsed = state === "collapsed";
