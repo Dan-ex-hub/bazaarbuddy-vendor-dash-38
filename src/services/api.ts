@@ -254,9 +254,21 @@ class ApiService {
   async getCurrentUser() {
     try {
       const response = await fetch('/api/user');
-      return response.json();
+
+      // Check if the response is ok and has content
+      if (!response.ok) {
+        return { success: false, user: null };
+      }
+
+      const text = await response.text();
+      if (!text) {
+        return { success: false, user: null };
+      }
+
+      return JSON.parse(text);
     } catch (error) {
-      // No user logged in
+      // No user logged in or backend not available
+      console.log('Auth check failed, using mock mode');
       return { success: false, user: null };
     }
   }
