@@ -1,154 +1,183 @@
 # 🛒 Sahaayak - Lightweight Offline Version
 
-Sahaayak - A simplified, lightweight wholesale food marketplace that runs completely offline with a single command.
+A simplified, lightweight wholesale food marketplace with multi-language support and theme switching.
 
-## ⚡ Quick Start (One Command)
+## ⚡ Quick Start
 
-### Option 1: Python Script (Recommended)
+### Development Mode (Frontend Only)
 ```bash
-python run.py
+npm run dev
 ```
+Runs on `http://localhost:8080` with mock data
 
-### Option 2: Platform-specific scripts
-**Windows:**
+### Production Mode (Full Stack)
 ```bash
-run.bat
+python app.py
 ```
+Builds frontend and starts Flask backend on `http://localhost:5000`
 
-**Linux/Mac:**
+## 🌟 Features
+
+### 🎨 **Theme Switching**
+- Click "Switch Theme" in sidebar to toggle between light/dark mode
+- Uses `next-themes` for persistent theme storage
+
+### 🌍 **Multi-Language Support**
+- **English (EN)** - Default
+- **Hindi (हिंदी)** - Complete translation
+- **Marathi (मराठी)** - Complete translation
+- Click "Language" in sidebar to cycle through languages
+
+### 📱 **Responsive Design**
+- Mobile-first approach
+- Works on all devices (320px to 2560px+)
+- Collapsible sidebar with proper logo visibility
+
+## 🔧 Development
+
+### Frontend Development
 ```bash
-./run.sh
-```
-
-### Option 3: NPM Script
-```bash
-npm start
-```
-
-That's it! Your app will be available at `http://localhost:5000`
-
-## 🎯 What This Does
-
-1. **Installs dependencies** (Node.js + Python packages)
-2. **Builds the React frontend** (optimized production build)
-3. **Starts Flask backend** (serves both API and frontend)
-4. **Opens on single port** (5000) - no CORS issues!
-
-## 📦 Lightweight & Optimized
-
-**Removed unnecessary packages:**
-- ❌ React Query (replaced with simple fetch)
-- ❌ 15+ unused Radix UI components 
-- ❌ Carousel, Charts, Date picker, etc.
-- ❌ All Lovable debugging tools
-
-**Result:** ~50% smaller bundle size, faster loading!
-
-## 🏗️ Simple Architecture
-
-```
-┌─────────────────┐    ┌─────────────────┐
-│   React Build   │    │   Flask API     │
-│   (Static)      │◄───┤   /api/*        │
-│   Served by     │    │                 │
-│   Flask         │    │   Serves React  │
-└──────���──────────┘    └─────────────────┘
-        📍 http://localhost:5000
-```
-
-## 🔧 Manual Setup (if needed)
-
-### Prerequisites
-- Python 3.7+
-- Node.js 16+
-
-### Manual Steps
-```bash
-# 1. Install Node dependencies
+# Install dependencies
 npm install
 
-# 2. Build React app
+# Start development server
+npm run dev
+
+# Build for production
 npm run build
+```
 
-# 3. Install Python packages
-pip install flask flask-cors python-dotenv
+### Full Stack Development
+```bash
+# Option 1: Single command (builds + runs)
+python app.py
 
-# 4. Start server
+# Option 2: Manual steps
+npm run build
 cd backend && python app.py
+
+# Option 3: Platform scripts
+./run.sh        # Linux/Mac
+run.bat         # Windows
+python run.py   # Cross-platform
 ```
 
 ## 📂 Project Structure
 
 ```
-├── src/                 # React source (simplified)
-├── backend/
-│   └── app.py          # Flask server (serves everything)
-├── dist/               # Built React app
-├── run.py              # One-command startup
-├── run.sh              # Linux/Mac script
-└── run.bat             # Windows script
+├── src/
+│   ├── components/          # React components
+│   ├── contexts/           # Language context
+│   ├── pages/              # Page components
+│   ├── services/           # API services (with mock fallback)
+│   └── lib/                # Utilities
+├── backend/                # Flask backend
+│   ├── app.py             # Main Flask app
+│   └── README.md          # Backend docs
+├── app.py                 # Single-command startup
+└── dist/                  # Built React app
 ```
 
-## 🚀 Features
+## 🎯 Language Implementation
 
-✅ **Responsive Design** - Works on all devices  
-✅ **Offline Ready** - No internet required  
-✅ **Single Port** - Everything on localhost:5000  
-✅ **Fast Loading** - Optimized bundle size  
-✅ **Simple Setup** - One command to rule them all  
+### Switching Languages
+The sidebar "Language" button cycles through:
+1. **English** → **Hindi** → **Marathi** → **English**
 
-## 📱 App Features
+### Adding Translations
+Edit `src/contexts/LanguageContext.tsx`:
 
-- 🏪 **Vendor Management** - Browse wholesalers
-- 💰 **Budget Items** - Find deals with filters
-- 📦 **Inventory** - Track your stock
-- ⭐ **Reviews** - Rate suppliers
-- ���� **Pay Later** - Credit system
-- 🎁 **Food Donations** - Reduce waste
-
-## 🔧 Development
-
-```bash
-# Development mode (frontend only)
-npm run dev
-
-# Build for production
-npm run build
-
-# Run backend only
-npm run backend
+```typescript
+const translations = {
+  en: { 'key': 'English text' },
+  hi: { 'key': 'हिंदी टेक्स्ट' },
+  mr: { 'key': 'मराठी मजकूर' }
+};
 ```
+
+### Using Translations
+```typescript
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const Component = () => {
+  const { t } = useLanguage();
+  return <h1>{t('nav.welcome')}</h1>;
+};
+```
+
+## 🎨 Theme Implementation
+
+### Manual Theme Switching
+```typescript
+import { useTheme } from 'next-themes';
+
+const Component = () => {
+  const { theme, setTheme } = useTheme();
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+  return <button onClick={toggleTheme}>Toggle Theme</button>;
+};
+```
+
+## 🔄 API Architecture
+
+### Development Mode
+- Uses mock data when backend unavailable
+- Automatic fallback to local data
+- All UI features work without backend
+
+### Production Mode
+- Full Flask REST API
+- Real-time data processing
+- Database integration ready
 
 ## 📊 Performance Optimizations
 
-- **Bundle Size:** Reduced by ~50%
-- **Dependencies:** Cut from 60+ to 20 essential packages
-- **Loading:** Faster initial load with minimal JS
-- **Memory:** Lower memory footprint
+- **Bundle Size:** ~892KB (254KB gzipped)
+- **Dependencies:** Minimized to essential packages only
+- **Loading:** Fast initial render with mock data
+- **Memory:** Optimized React context usage
 
 ## 🛠️ Tech Stack
 
-**Frontend:** React + TypeScript + Tailwind CSS  
-**Backend:** Flask + Python  
-**Build:** Vite (fast builds)  
-**UI:** Minimal Radix UI components  
+**Frontend:**
+- React 18 + TypeScript
+- Tailwind CSS + shadcn/ui
+- Vite (build tool)
+- next-themes (theme switching)
 
-## 🎯 VS Code Usage
+**Backend:**
+- Flask + Python
+- CORS enabled
+- Static file serving
+
+## VS Code Usage
 
 1. Open project in VS Code
 2. Open terminal (`Ctrl+` `)
-3. Run: `python run.py`
-4. Visit: `http://localhost:5000`
+3. Run development: `npm run dev`
+4. Or run production: `python app.py`
 
-**That's it! No complex setup, no multiple terminals, no configuration.**
+## 📱 Mobile Features
 
-## 🔒 Offline & Secure
+- Touch-friendly sidebar navigation
+- Responsive categories grid
+- Mobile-optimized typography
+- Gesture support for theme/language switching
 
-- ✅ No external API calls
-- ✅ No tracking or analytics
-- ✅ All data stays local
-- ✅ No internet required after setup
+## 🌐 Offline Support
 
-## 📄 License
+- Works completely offline in development mode
+- Service worker ready for PWA conversion
+- Local storage for preferences
+- Mock data ensures functionality
 
-MIT License - Use freely for personal/commercial projects.
+## 🔐 Security
+
+- No external API calls in dev mode
+- CORS properly configured
+- XSS protection with React
+- Safe HTML rendering
+
+---
+
+**Sahaayak** - Your reliable wholesale marketplace companion! 🚀
