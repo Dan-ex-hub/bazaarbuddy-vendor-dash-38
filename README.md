@@ -1,4 +1,4 @@
-# 🛒 BazaarBuddy - Lightweight Offline Version
+# 🛒 Sahaayak - Lightweight Offline Version
 
 A simplified, lightweight wholesale food marketplace that runs completely offline with a single command.
 
