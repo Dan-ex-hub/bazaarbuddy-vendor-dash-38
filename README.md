@@ -1,73 +1,195 @@
-# Welcome to your Lovable project
+# BazaarBuddy - Wholesale Food Marketplace
 
-## Project info
+A modern React + Flask application for wholesale food vendors to connect with suppliers and manage their business.
 
-**URL**: https://lovable.dev/projects/b1f0c269-f85f-4372-b2c6-56667c2ed904
+## 🏗️ Architecture
 
-## How can I edit this code?
+- **Frontend**: React + TypeScript + Tailwind CSS + shadcn/ui
+- **Backend**: Flask + Python
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS with custom theme
 
-There are several ways of editing your application.
+## 🚀 Quick Start
 
-**Use Lovable**
+### Prerequisites
+- Node.js 18+ 
+- Python 3.8+
+- npm or yarn
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b1f0c269-f85f-4372-b2c6-56667c2ed904) and start prompting.
+### 1. Frontend Setup
 
-Changes made via Lovable will be committed automatically to this repo.
+```bash
+# Install dependencies
+npm install
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The frontend will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 2. Backend Setup
 
-**Use GitHub Codespaces**
+#### Option A: Using the provided scripts (Recommended)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+**Linux/Mac:**
+```bash
+./start-backend.sh
+```
 
-## What technologies are used for this project?
+**Windows:**
+```bash
+start-backend.bat
+```
 
-This project is built with:
+#### Option B: Manual setup
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```bash
+# Navigate to backend directory
+cd backend
 
-## How can I deploy this project?
+# Create virtual environment
+python -m venv venv
 
-Simply open [Lovable](https://lovable.dev/projects/b1f0c269-f85f-4372-b2c6-56667c2ed904) and click on Share -> Publish.
+# Activate virtual environment
+# Linux/Mac:
+source venv/bin/activate
+# Windows:
+venv\Scripts\activate
 
-## Can I connect a custom domain to my Lovable project?
+# Install dependencies
+pip install -r requirements.txt
 
-Yes, you can!
+# Start Flask server
+python app.py
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The backend API will be available at `http://localhost:5000`
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📁 Project Structure
+
+```
+├── src/                    # React frontend source
+│   ├── components/         # React components
+│   ├── pages/             # Page components
+│   ├── services/          # API services
+│   ├── lib/               # Utilities
+│   └── types/             # TypeScript types
+├── backend/               # Flask backend
+│   ├── app.py            # Main Flask application
+│   ├── config.py         # Configuration
+│   ├── requirements.txt  # Python dependencies
+│   └── README.md         # Backend documentation
+├── public/               # Static assets
+└── dist/                # Build output
+```
+
+## 🛠️ Development Scripts
+
+### Frontend
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+### Backend
+- `npm run backend` - Start Flask backend
+- `npm run start:backend` - Start backend with setup script
+
+## 🔧 Features
+
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Modern UI**: Built with shadcn/ui components
+- **Real-time Data**: Flask REST API backend
+- **TypeScript**: Full type safety
+- **Performance Optimized**: Removed unnecessary dependencies
+
+## 📦 Dependencies Optimized
+
+Removed unused packages to reduce bundle size:
+- embla-carousel-react
+- input-otp  
+- react-day-picker
+- react-resizable-panels
+- recharts
+- vaul
+- cmdk
+- @tailwindcss/typography
+- lovable-tagger (debug tool)
+
+## 🔗 API Endpoints
+
+The Flask backend provides the following REST endpoints:
+
+- `GET /api/vendors` - Wholesaler data
+- `GET /api/budget-items` - Budget-friendly items
+- `GET /api/recent-orders` - Recent orders
+- `GET /api/reviews` - Vendor reviews
+- `GET /api/categories` - Product categories
+- `GET /api/inventory` - Inventory management
+- `GET /api/pay-later` - Pay later service
+- `POST /api/pay-later/enroll` - Enroll in pay later
+- `POST /api/pay-later/repay` - Make repayment
+- `GET /api/food-donations` - Food donations
+- `POST /api/food-donations` - Create donation
+- `GET /health` - Health check
+
+## 🌐 Production Deployment
+
+### Frontend
+```bash
+npm run build
+# Deploy dist/ folder to your web server
+```
+
+### Backend
+```bash
+cd backend
+pip install -r requirements.txt
+# Set FLASK_ENV=production
+python app.py
+```
+
+## 📱 Responsive Design
+
+The application is fully responsive and optimized for:
+- Mobile devices (320px+)
+- Tablets (768px+) 
+- Desktop (1024px+)
+- Large screens (1400px+)
+
+## 🎨 Theming
+
+Uses a custom Tailwind CSS theme with:
+- CSS custom properties for colors
+- Gradient backgrounds
+- Consistent shadows and borders
+- Dark mode support (via next-themes)
+
+## 🔒 Environment Variables
+
+Create `.env` files for configuration:
+
+**Frontend (.env):**
+```
+VITE_API_URL=http://localhost:5000
+```
+
+**Backend (backend/.env):**
+```
+SECRET_KEY=your-secret-key
+FLASK_DEBUG=True
+FLASK_ENV=development
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
