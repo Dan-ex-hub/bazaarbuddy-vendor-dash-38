@@ -66,7 +66,7 @@ const AppRoutes = () => {
         path="/vendor-dashboard"
         element={
           <ProtectedRoute allowedUserType="vendor">
-            <VendorDashboard />
+            <Index />
           </ProtectedRoute>
         }
       />
