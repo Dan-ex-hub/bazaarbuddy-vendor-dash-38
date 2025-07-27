@@ -219,7 +219,10 @@ const WholesalersSection = () => {
                     Trust Score: {wholesaler.trustScore}%
                   </span>
                 </div>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl text-sm">
+                <Button
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl text-sm"
+                  onClick={() => handleViewProducts(wholesaler)}
+                >
                   View Products
                 </Button>
               </div>
