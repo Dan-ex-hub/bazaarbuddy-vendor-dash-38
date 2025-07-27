@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 BazaarBuddy - Starting Application..."
+echo "🚀 Sahaayak - Starting Application..."
 echo "=================================================="
 
 # Check if node_modules exists
