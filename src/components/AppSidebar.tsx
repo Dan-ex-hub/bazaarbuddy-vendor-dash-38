@@ -60,12 +60,12 @@ export function AppSidebar() {
               {sidebarItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   {item.isHeader ? (
-                    <div className="flex items-center space-x-3 px-3 py-4 mb-4">
+                    <div className="flex items-center space-x-3 px-3 py-3 sm:py-4 mb-3 sm:mb-4">
                       <div className="p-2 bg-gradient-primary rounded-lg">
                         <item.icon className="h-5 w-5 text-white" />
                       </div>
                       {!isCollapsed && (
-                        <span className="text-lg font-bold bg-gradient-primary bg-clip-text text-transparent">
+                        <span className="text-base sm:text-lg font-bold bg-gradient-primary bg-clip-text text-transparent">
                           {item.title}
                         </span>
                       )}
@@ -74,10 +74,10 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink 
                         to={item.url} 
-                        className={({ isActive }) => `flex items-center space-x-3 px-3 py-3 transition-all duration-200 ${getNavCls({ isActive })} ${item.isAction ? 'text-destructive hover:text-destructive hover:bg-destructive/10' : ''}`}
+                        className={({ isActive }) => `flex items-center space-x-3 px-3 py-2 sm:py-3 transition-all duration-200 ${getNavCls({ isActive })} ${item.isAction ? 'text-destructive hover:text-destructive hover:bg-destructive/10' : ''}`}
                       >
                         <item.icon className="h-5 w-5 flex-shrink-0" />
-                        {!isCollapsed && <span className="text-sm font-medium">{item.title}</span>}
+                        {!isCollapsed && <span className="text-xs sm:text-sm font-medium">{item.title}</span>}
                       </NavLink>
                     </SidebarMenuButton>
                   )}
