@@ -66,9 +66,9 @@ const VendorNavbar = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-popover border border-border shadow-float">
                 {languages.map((lang) => (
-                  <DropdownMenuItem 
+                  <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setSelectedLanguage(lang.name)}
+                    onClick={() => setLanguage(lang.code)}
                     className="hover:bg-muted cursor-pointer"
                   >
                     {lang.name}
