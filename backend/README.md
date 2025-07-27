@@ -1,4 +1,4 @@
-# Flask Backend for BazaarBuddy
+# Flask Backend for Sahaayak
 
 ## Setup
 
