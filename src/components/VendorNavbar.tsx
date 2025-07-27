@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronDown, User, Heart, Gift } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const VendorNavbar = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const { language, setLanguage, t } = useLanguage();
   
   const languages = [
     { code: "en", name: "English" },
