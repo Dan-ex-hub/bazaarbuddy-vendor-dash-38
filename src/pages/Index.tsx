@@ -24,7 +24,7 @@ const Index = () => {
             <div className="flex items-center space-x-2 sm:space-x-4">
               <SidebarTrigger />
               <h1 className="text-lg sm:text-xl font-semibold text-foreground truncate">
-                Welcome back!
+                {t('nav.welcome')}
               </h1>
             </div>
           </header>
