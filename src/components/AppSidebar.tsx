@@ -75,8 +75,8 @@ export function AppSidebar() {
               {sidebarItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   {item.isHeader ? (
-                    <div className="flex items-center space-x-3 px-3 py-3 sm:py-4 mb-3 sm:mb-4">
-                      <div className="p-2 bg-gradient-primary rounded-lg">
+                    <div className="flex items-center justify-center px-3 py-3 sm:py-4 mb-3 sm:mb-4">
+                      <div className={`p-2 bg-gradient-primary rounded-lg ${isCollapsed ? 'mx-auto' : 'mr-3'}`}>
                         <item.icon className="h-5 w-5 text-white" />
                       </div>
                       {!isCollapsed && (
