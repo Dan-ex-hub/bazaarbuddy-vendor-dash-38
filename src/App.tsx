@@ -96,6 +96,14 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/products"
+        element={
+          <ProtectedRoute allowedUserType="vendor">
+            <ProductsPage />
+          </ProtectedRoute>
+        }
+      />
 
       {/* Wholesaler Routes */}
       <Route
