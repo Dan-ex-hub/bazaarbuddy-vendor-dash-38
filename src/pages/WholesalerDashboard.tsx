@@ -220,7 +220,12 @@ const WholesalerDashboard = () => {
                       </div>
                     </div>
                     <div className="flex space-x-2 mt-4">
-                      <Button variant="outline" size="sm" className="flex-1">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => handleEditProduct(product)}
+                      >
                         <Edit className="w-3 h-3 mr-1" />
                         Edit
                       </Button>
