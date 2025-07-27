@@ -9,6 +9,8 @@ import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import ProductsPage from "./pages/ProductsPage";
+import ProfilePage from "./pages/ProfilePage";
+import OffersPage from "./pages/OffersPage";
 import LoginPage from "./pages/LoginPage";
 import VendorDashboard from "./pages/VendorDashboard";
 import WholesalerDashboard from "./pages/WholesalerDashboard";
