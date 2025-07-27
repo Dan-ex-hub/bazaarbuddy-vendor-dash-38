@@ -38,8 +38,9 @@ interface Offer {
 
 const OffersPage = () => {
   const { user } = useAuth();
-  const { addToCart } = useCart();
+  const { addToCart, getCartItemsCount, getCartTotal } = useCart();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const offers: Offer[] = [
     {
