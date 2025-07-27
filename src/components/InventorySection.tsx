@@ -1,13 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Apple, 
-  Wheat, 
-  Beef, 
-  Fish, 
-  Milk, 
-  Leaf, 
-  Plus 
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
+import {
+  Apple,
+  Wheat,
+  Beef,
+  Fish,
+  Milk,
+  Leaf,
+  Plus
 } from "lucide-react";
 
 interface InventoryItem {
