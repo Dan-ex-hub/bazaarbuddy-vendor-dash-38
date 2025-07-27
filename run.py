@@ -16,7 +16,7 @@ def run_command(command, cwd=None):
         return False
 
 def main():
-    print("🚀 BazaarBuddy - Starting Application...")
+    print("🚀 Sahaayak - Starting Application...")
     print("=" * 50)
     
     # Check if Node.js is installed
