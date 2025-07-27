@@ -21,9 +21,10 @@ interface ProductsPageProps {
 
 const ProductsPage: React.FC<ProductsPageProps> = ({ selectedCategory, searchQuery: initialSearchQuery }) => {
   const { user } = useAuth();
-  const { addToCart, cartItems, updateQuantity } = useCart();
+  const { addToCart, cartItems, updateQuantity, getCartItemsCount, getCartTotal } = useCart();
   const { toast } = useToast();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Get search params from URL
   const urlParams = new URLSearchParams(location.search);
