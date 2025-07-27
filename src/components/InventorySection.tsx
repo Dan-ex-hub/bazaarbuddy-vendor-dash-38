@@ -29,8 +29,40 @@ const inventoryData: InventoryItem[] = [
 ];
 
 const InventorySection = () => {
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+
   const handleAddToInventory = (itemId: string) => {
-    console.log(`Adding ${itemId} to inventory`);
+    const item = inventoryData.find(i => i.id === itemId);
+    if (!item) return;
+
+    // Add a sample product from this category to cart
+    const sampleProducts = {
+      "1": { name: "Fresh Apples", price: 150, category: "Fruits" },
+      "2": { name: "Basmati Rice", price: 120, category: "Grains & Cereals" },
+      "3": { name: "Chicken Breast", price: 320, category: "Meat" },
+      "4": { name: "Fresh Fish", price: 450, category: "Seafood" },
+      "5": { name: "Fresh Milk", price: 55, category: "Dairy Products" },
+      "6": { name: "Fresh Tomatoes", price: 45, category: "Vegetables" },
+    };
+
+    const product = sampleProducts[itemId as keyof typeof sampleProducts];
+
+    if (product) {
+      addToCart({
+        id: `inventory-${itemId}-${Date.now()}`,
+        name: product.name,
+        price: product.price,
+        unit: "per kg",
+        category: product.category,
+        wholesaler: "Local Supplier"
+      });
+
+      toast({
+        title: "Added to Cart!",
+        description: `${product.name} has been added to your cart.`,
+      });
+    }
   };
 
   const groupedInventory = inventoryData.reduce((acc, item) => {
