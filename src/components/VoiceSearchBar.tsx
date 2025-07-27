@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mic, MicOff } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const VoiceSearchBar = () => {
+  const { t } = useLanguage();
   const [isListening, setIsListening] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
