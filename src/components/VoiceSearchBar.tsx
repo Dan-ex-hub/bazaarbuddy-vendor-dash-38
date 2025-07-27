@@ -19,7 +19,7 @@ const VoiceSearchBar = () => {
       <div className="relative flex items-center">
         <Input
           type="text"
-          placeholder="Search Ingredients by Voice…"
+          placeholder={t('voice_search.placeholder')}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="pl-3 sm:pl-4 pr-14 sm:pr-16 py-4 sm:py-6 text-sm sm:text-lg rounded-xl sm:rounded-2xl border-2 border-border focus:border-primary shadow-soft bg-input"
