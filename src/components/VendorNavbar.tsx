@@ -60,7 +60,7 @@ const VendorNavbar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="flex items-center space-x-2">
-                  <span>{selectedLanguage}</span>
+                  <span>{getCurrentLanguageName()}</span>
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
