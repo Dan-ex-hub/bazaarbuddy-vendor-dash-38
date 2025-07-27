@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { useLanguage } from "@/contexts/LanguageContext";
 import CategoriesSection from "@/components/CategoriesSection";
 import VoiceSearchBar from "@/components/VoiceSearchBar";
 import RecentOrdersSection from "@/components/RecentOrdersSection";
@@ -11,6 +12,7 @@ import PayLaterSection from "@/components/PayLaterSection";
 import FoodDonationBanner from "@/components/FoodDonationBanner";
 
 const Index = () => {
+  const { t } = useLanguage();
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
