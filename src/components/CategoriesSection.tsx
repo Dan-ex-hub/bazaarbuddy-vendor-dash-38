@@ -172,9 +172,10 @@ const CategoriesSection = () => {
       
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
         {categories.map((category) => (
-          <Card 
-            key={category.id} 
+          <Card
+            key={category.id}
             className="cursor-pointer transition-all duration-200 hover:shadow-card hover:scale-105 border-0 shadow-soft"
+            onClick={() => handleCategoryClick(category)}
           >
             <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
               <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${category.bgColor} rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4`}>
