@@ -87,13 +87,13 @@ export function AppSidebar() {
                     </div>
                   ) : (
                     <SidebarMenuButton asChild>
-                      <NavLink
-                        to={item.url}
-                        onMouseDown={(e) => {
-                          // Allow middle-click to open in new tab
-                          if (e.button === 1) {
+                      <a
+                        href={item.url}
+                        onClick={(e) => {
+                          handleLinkClick(e, item.url);
+                          if (!e.defaultPrevented) {
                             e.preventDefault();
-                            window.open(item.url, '_blank');
+                            navigate(item.url);
                           }
                         }}
                         onAuxClick={(e) => {
@@ -103,11 +103,15 @@ export function AppSidebar() {
                             window.open(item.url, '_blank');
                           }
                         }}
-                        className={({ isActive }) => `flex items-center space-x-3 px-3 py-2 sm:py-3 transition-all duration-200 ${getNavCls({ isActive })} ${item.isAction ? 'text-destructive hover:text-destructive hover:bg-destructive/10' : ''}`}
+                        className={`flex items-center space-x-3 px-3 py-2 sm:py-3 transition-all duration-200 ${
+                          isActive(item.url)
+                            ? "bg-primary/10 text-primary font-medium border-r-2 border-primary"
+                            : "hover:bg-muted/50 text-muted-foreground hover:text-foreground"
+                        } ${item.isAction ? 'text-destructive hover:text-destructive hover:bg-destructive/10' : ''}`}
                       >
                         <item.icon className="h-5 w-5 flex-shrink-0" />
                         {!isCollapsed && <span className="text-xs sm:text-sm font-medium">{item.title}</span>}
-                      </NavLink>
+                      </a>
                     </SidebarMenuButton>
                   )}
                 </SidebarMenuItem>
