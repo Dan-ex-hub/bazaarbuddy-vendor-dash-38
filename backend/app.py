@@ -137,7 +137,7 @@ def health_check():
     return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
 
 if __name__ == '__main__':
-    print("🚀 Starting BazaarBuddy...")
+    print("🚀 Starting Sahaayak...")
     print("📦 Backend: http://localhost:5000")
     print("🌐 Frontend: http://localhost:5000")
     print("📊 API Health: http://localhost:5000/health")
