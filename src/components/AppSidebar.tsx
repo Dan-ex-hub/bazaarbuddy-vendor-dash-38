@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/sidebar";
 
 const sidebarItems = [
-  { title: "BazaarBuddy", url: "/", icon: Package, isHeader: true },
+  { title: "Sahaayak", url: "/", icon: Package, isHeader: true },
   { title: "Profile", url: "/profile", icon: User },
   { title: "Recent Orders", url: "/orders", icon: ShoppingBag },
   { title: "Payment Info", url: "/payment", icon: CreditCard },
