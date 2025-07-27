@@ -12,6 +12,7 @@ import ProductsPage from "./pages/ProductsPage";
 import ProfilePage from "./pages/ProfilePage";
 import OffersPage from "./pages/OffersPage";
 import PaymentInfoPage from "./pages/PaymentInfoPage";
+import OrdersPage from "./pages/OrdersPage";
 import LoginPage from "./pages/LoginPage";
 import VendorDashboard from "./pages/VendorDashboard";
 import WholesalerDashboard from "./pages/WholesalerDashboard";
