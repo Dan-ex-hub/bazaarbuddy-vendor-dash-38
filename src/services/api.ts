@@ -255,8 +255,11 @@ class ApiService {
     }
 
     if (userType === 'wholesaler') {
+      console.log('Looking for wholesaler with phone:', phone, 'password:', password);
       const wholesaler = mockWholesalers.find(w => w.phone === phone && w.password === password);
+      console.log('Found wholesaler:', wholesaler);
       if (wholesaler) {
+        console.log('Mock wholesaler login successful for:', wholesaler.name);
         return {
           success: true,
           user: {
@@ -267,9 +270,12 @@ class ApiService {
             shop_name: wholesaler.shop_name
           }
         };
+      } else {
+        console.log('Wholesaler not found in mock data');
       }
     }
 
+    console.log('Login failed - no matching credentials found');
     return {
       success: false,
       message: 'Invalid credentials'
