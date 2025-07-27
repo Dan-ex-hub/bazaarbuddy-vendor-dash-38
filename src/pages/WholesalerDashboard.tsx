@@ -63,7 +63,7 @@ const WholesalerDashboard = () => {
   };
 
   // Mock data for wholesaler dashboard
-  const [products] = useState([
+  const [products, setProducts] = useState([
     { id: 1, name: "Organic Tomatoes", category: "Vegetables", price: 45, stock: 500, status: "In Stock" },
     { id: 2, name: "Fresh Spinach", category: "Vegetables", price: 25, stock: 200, status: "Low Stock" },
     { id: 3, name: "Premium Carrots", category: "Vegetables", price: 35, stock: 300, status: "In Stock" },
