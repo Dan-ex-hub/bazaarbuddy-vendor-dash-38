@@ -68,21 +68,21 @@ const ReviewsSection = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-foreground">Your Reviews of Wholesalers</h2>
-        <div className="flex items-center space-x-2 bg-gradient-card rounded-xl px-4 py-2 shadow-card">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground">Your Reviews of Wholesalers</h2>
+        <div className="flex items-center space-x-2 bg-gradient-card rounded-xl px-3 sm:px-4 py-2 shadow-card">
           <div className="flex">{renderStars(Math.round(averageRating))}</div>
-          <span className="font-semibold text-foreground">{averageRating.toFixed(1)}</span>
-          <span className="text-muted-foreground">({reviews.length} reviews)</span>
+          <span className="text-sm sm:text-base font-semibold text-foreground">{averageRating.toFixed(1)}</span>
+          <span className="text-xs sm:text-sm text-muted-foreground">({reviews.length} reviews)</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {reviews.map((review) => (
           <Card key={review.id} className="bg-gradient-card border border-border shadow-card hover:shadow-float transition-all duration-300 rounded-2xl">
-            <CardContent className="p-6">
-              <div className="flex items-start space-x-4">
-                <Avatar className="h-10 w-10">
+            <CardContent className="p-4 sm:p-6">
+              <div className="flex items-start space-x-3 sm:space-x-4">
+                <Avatar className="h-8 w-8 sm:h-10 sm:w-10">
                   <AvatarImage src={review.avatar} alt={review.vendorName} />
                   <AvatarFallback className="bg-primary text-primary-foreground">
                     {review.vendorName.split(' ').map(n => n[0]).join('')}
@@ -90,22 +90,22 @@ const ReviewsSection = () => {
                 </Avatar>
                 
                 <div className="flex-1 space-y-2">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0">
                     <div>
-                      <h4 className="font-semibold text-foreground">{review.vendorName}</h4>
-                      <p className="text-sm text-primary">reviewed {review.wholesalerName}</p>
+                      <h4 className="text-sm sm:text-base font-semibold text-foreground">{review.vendorName}</h4>
+                      <p className="text-xs sm:text-sm text-primary">reviewed {review.wholesalerName}</p>
                     </div>
-                    <span className="text-sm text-muted-foreground">{review.date}</span>
+                    <span className="text-xs sm:text-sm text-muted-foreground">{review.date}</span>
                   </div>
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0">
                     <div className="flex items-center space-x-1">
                       {renderStars(review.rating)}
                     </div>
-                    <span className="text-sm text-secondary font-medium">₹{review.orderValue}</span>
+                    <span className="text-xs sm:text-sm text-secondary font-medium">₹{review.orderValue}</span>
                   </div>
                   
-                  <p className="text-muted-foreground leading-relaxed">{review.comment}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{review.comment}</p>
                 </div>
               </div>
             </CardContent>
@@ -114,10 +114,10 @@ const ReviewsSection = () => {
       </div>
 
       <Card className="bg-gradient-primary rounded-2xl shadow-float">
-        <CardContent className="p-6 text-center">
-          <MessageSquare className="h-12 w-12 text-white mx-auto mb-4" />
-          <h3 className="text-xl font-bold text-white mb-2">Share Your Experience</h3>
-          <p className="text-white/90">Help other vendors by reviewing wholesalers you've ordered from!</p>
+        <CardContent className="p-4 sm:p-6 text-center">
+          <MessageSquare className="h-10 w-10 sm:h-12 sm:w-12 text-white mx-auto mb-4" />
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-2">Share Your Experience</h3>
+          <p className="text-sm sm:text-base text-white/90">Help other vendors by reviewing wholesalers you've ordered from!</p>
         </CardContent>
       </Card>
     </div>
