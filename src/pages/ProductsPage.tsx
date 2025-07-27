@@ -22,9 +22,30 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ selectedCategory, searchQue
   const { user } = useAuth();
   const { addToCart, cartItems, updateQuantity } = useCart();
   const { toast } = useToast();
-  const [searchQuery, setSearchQuery] = useState(initialSearchQuery || '');
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState(selectedCategory || 'all');
+  const location = useLocation();
+
+  // Get search params from URL
+  const urlParams = new URLSearchParams(location.search);
+  const urlSearchQuery = urlParams.get('search') || '';
+  const urlCategory = urlParams.get('category') || '';
+
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery || urlSearchQuery || '');
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState(selectedCategory || urlCategory || 'all');
   const [sortBy, setSortBy] = useState('name');
+
+  // Update search query when URL changes
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const newSearchQuery = urlParams.get('search') || '';
+    const newCategory = urlParams.get('category') || '';
+
+    if (newSearchQuery) {
+      setSearchQuery(newSearchQuery);
+    }
+    if (newCategory) {
+      setSelectedCategoryFilter(newCategory);
+    }
+  }, [location.search]);
 
   const filteredProducts = useMemo(() => {
     let products = mockProducts;
