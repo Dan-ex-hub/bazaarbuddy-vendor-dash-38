@@ -120,9 +120,9 @@ const WholesalersSection = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h2 className="text-2xl font-bold text-foreground">Top Rated Wholesalers</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground">Top Rated Wholesalers</h2>
         
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Button
             variant={sortBy === "rating" ? "default" : "outline"}
             onClick={() => setSortBy("rating")}
@@ -152,13 +152,13 @@ const WholesalersSection = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {sortedWholesalers.map((wholesaler) => (
           <Card key={wholesaler.id} className="bg-gradient-card border border-border shadow-card hover:shadow-float transition-all duration-300 rounded-2xl">
-            <CardHeader className="pb-3">
-              <div className="flex items-start justify-between">
+            <CardHeader className="pb-2 sm:pb-3">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-0">
                 <div className="space-y-2">
-                  <CardTitle className="text-lg font-bold text-foreground">
+                  <CardTitle className="text-base sm:text-lg font-bold text-foreground">
                     {wholesaler.name}
                   </CardTitle>
                   <div className="flex items-center space-x-2">
@@ -173,24 +173,24 @@ const WholesalersSection = () => {
               </div>
             </CardHeader>
 
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 sm:space-y-4">
               <div className="flex items-center text-muted-foreground">
                 <MapPin className="h-4 w-4 mr-2" />
-                <span className="text-sm">{wholesaler.location}</span>
+                <span className="text-xs sm:text-sm">{wholesaler.location}</span>
               </div>
 
               <div className="flex items-center text-muted-foreground">
                 <Phone className="h-4 w-4 mr-2" />
-                <span className="text-sm">{wholesaler.phone}</span>
+                <span className="text-xs sm:text-sm">{wholesaler.phone}</span>
               </div>
 
               <div className="flex items-center text-muted-foreground">
                 <Clock className="h-4 w-4 mr-2" />
-                <span className="text-sm">Delivery: {wholesaler.deliveryTime}</span>
+                <span className="text-xs sm:text-sm">Delivery: {wholesaler.deliveryTime}</span>
               </div>
 
               <div className="space-y-2">
-                <p className="text-sm font-medium text-foreground">Specialties:</p>
+                <p className="text-xs sm:text-sm font-medium text-foreground">Specialties:</p>
                 <div className="flex flex-wrap gap-2">
                   {wholesaler.specialties.map((specialty) => (
                     <Badge key={specialty} variant="outline" className="rounded-lg text-xs">
@@ -200,14 +200,14 @@ const WholesalersSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 pt-2">
                 <div className="flex items-center space-x-2">
                   <TrendingUp className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">
+                  <span className="text-xs sm:text-sm font-medium text-foreground">
                     Trust Score: {wholesaler.trustScore}%
                   </span>
                 </div>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl text-sm">
                   View Products
                 </Button>
               </div>
