@@ -1,5 +1,5 @@
 @echo off
-echo 🚀 BazaarBuddy - Starting Application...
+echo 🚀 Sahaayak - Starting Application...
 echo ==================================================
 
 REM Check if node_modules exists
