@@ -190,7 +190,16 @@ class ApiService {
         }),
       });
 
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const text = await response.text();
+      if (!text) {
+        throw new Error('Empty response');
+      }
+
+      const data = JSON.parse(text);
       return data;
     } catch (error) {
       // Mock authentication for development
