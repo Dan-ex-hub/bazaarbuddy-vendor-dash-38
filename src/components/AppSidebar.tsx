@@ -33,7 +33,7 @@ const sidebarItems = [
 ];
 
 export function AppSidebar() {
-  const { state } = useSidebar();
+  const { state, toggleSidebar } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -42,13 +42,20 @@ export function AppSidebar() {
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
     isActive ? "bg-primary/10 text-primary font-medium border-r-2 border-primary" : "hover:bg-muted/50 text-muted-foreground hover:text-foreground";
 
+  const handleSidebarClick = (e: React.MouseEvent) => {
+    // Only toggle if clicking on the sidebar background, not on menu items
+    if (e.target === e.currentTarget) {
+      toggleSidebar();
+    }
+  };
+
   return (
     <Sidebar
       collapsible="icon"
     >
-      <SidebarContent className="bg-card border-r border-border">
+      <SidebarContent className="bg-card border-r border-border cursor-pointer" onClick={handleSidebarClick}>
         <SidebarGroup>
-          <SidebarGroupContent>
+          <SidebarGroupContent onClick={(e) => e.stopPropagation()}>
             <SidebarMenu>
               {sidebarItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
