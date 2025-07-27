@@ -123,6 +123,14 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/payment"
+        element={
+          <ProtectedRoute allowedUserType="vendor">
+            <PaymentInfoPage />
+          </ProtectedRoute>
+        }
+      />
 
       {/* Wholesaler Routes */}
       <Route
