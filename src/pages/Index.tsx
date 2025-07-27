@@ -1,6 +1,11 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCart } from "@/contexts/CartContext";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ShoppingCart } from "lucide-react";
 import CategoriesSection from "@/components/CategoriesSection";
 import VoiceSearchBar from "@/components/VoiceSearchBar";
 import RecentOrdersSection from "@/components/RecentOrdersSection";
