@@ -72,8 +72,22 @@ export function AppSidebar() {
                     </div>
                   ) : (
                     <SidebarMenuButton asChild>
-                      <NavLink 
-                        to={item.url} 
+                      <NavLink
+                        to={item.url}
+                        onMouseDown={(e) => {
+                          // Allow middle-click to open in new tab
+                          if (e.button === 1) {
+                            e.preventDefault();
+                            window.open(item.url, '_blank');
+                          }
+                        }}
+                        onAuxClick={(e) => {
+                          // Handle middle-click
+                          if (e.button === 1) {
+                            e.preventDefault();
+                            window.open(item.url, '_blank');
+                          }
+                        }}
                         className={({ isActive }) => `flex items-center space-x-3 px-3 py-2 sm:py-3 transition-all duration-200 ${getNavCls({ isActive })} ${item.isAction ? 'text-destructive hover:text-destructive hover:bg-destructive/10' : ''}`}
                       >
                         <item.icon className="h-5 w-5 flex-shrink-0" />
