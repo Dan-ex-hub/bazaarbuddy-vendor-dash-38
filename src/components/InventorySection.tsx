@@ -41,15 +41,15 @@ const InventorySection = () => {
 
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl font-bold text-foreground">Inventory Categories</h2>
+      <h2 className="text-xl sm:text-2xl font-bold text-foreground">Inventory Categories</h2>
       
       {Object.entries(groupedInventory).map(([category, items]) => (
         <div key={category} className="space-y-4">
-          <h3 className="text-lg font-semibold text-muted-foreground border-b border-border pb-2">
+          <h3 className="text-base sm:text-lg font-semibold text-muted-foreground border-b border-border pb-2">
             {category}
           </h3>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
             {items.map((item) => {
               const IconComponent = item.icon;
               return (
@@ -57,14 +57,14 @@ const InventorySection = () => {
                   key={item.id} 
                   className="bg-gradient-card border border-border shadow-card hover:shadow-float transition-all duration-300 rounded-2xl group"
                 >
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors duration-300">
-                          <IconComponent className="h-6 w-6 text-primary" />
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
+                        <div className="p-2 sm:p-3 bg-primary/10 rounded-lg sm:rounded-xl group-hover:bg-primary/20 transition-colors duration-300">
+                          <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-foreground">{item.name}</h4>
+                          <h4 className="text-sm sm:text-base font-medium text-foreground">{item.name}</h4>
                         </div>
                       </div>
                       

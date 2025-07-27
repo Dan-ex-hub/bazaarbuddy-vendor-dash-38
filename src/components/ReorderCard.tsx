@@ -31,16 +31,16 @@ const ReorderCard = ({
   };
 
   return (
-    <Card className="flex-shrink-0 w-72 bg-gradient-card border border-border shadow-card hover:shadow-float transition-all duration-300 rounded-2xl">
-      <CardContent className="p-6">
+    <Card className="flex-shrink-0 w-64 sm:w-72 bg-gradient-card border border-border shadow-card hover:shadow-float transition-all duration-300 rounded-2xl">
+      <CardContent className="p-4 sm:p-6">
         <div className="space-y-4">
           {/* Item Name */}
-          <h3 className="text-lg font-semibold text-foreground line-clamp-2">
+          <h3 className="text-base sm:text-lg font-semibold text-foreground line-clamp-2">
             {itemName}
           </h3>
           
           {/* Order History */}
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             You have ordered this {orderCount} times
           </p>
           
@@ -56,7 +56,7 @@ const ReorderCard = ({
                 <Minus className="h-4 w-4" />
               </Button>
               
-              <span className="text-lg font-medium w-8 text-center">
+              <span className="text-base sm:text-lg font-medium w-8 text-center">
                 {quantity}
               </span>
               
@@ -74,7 +74,7 @@ const ReorderCard = ({
           {/* Reorder Button */}
           <Button
             onClick={handleReorder}
-            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl py-2 font-medium transition-all duration-300 shadow-soft hover:shadow-float"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl py-2 font-medium transition-all duration-300 shadow-soft hover:shadow-float text-sm sm:text-base"
           >
             Reorder
           </Button>

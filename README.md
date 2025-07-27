@@ -1,73 +1,183 @@
-# Welcome to your Lovable project
+# 🛒 Sahaayak - Lightweight Offline Version
 
-## Project info
+A simplified, lightweight wholesale food marketplace with multi-language support and theme switching.
 
-**URL**: https://lovable.dev/projects/b1f0c269-f85f-4372-b2c6-56667c2ed904
+## ⚡ Quick Start
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/b1f0c269-f85f-4372-b2c6-56667c2ed904) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Development Mode (Frontend Only)
+```bash
 npm run dev
 ```
+Runs on `http://localhost:8080` with mock data
 
-**Edit a file directly in GitHub**
+### Production Mode (Full Stack)
+```bash
+python app.py
+```
+Builds frontend and starts Flask backend on `http://localhost:5000`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🌟 Features
 
-**Use GitHub Codespaces**
+### 🎨 **Theme Switching**
+- Click "Switch Theme" in sidebar to toggle between light/dark mode
+- Uses `next-themes` for persistent theme storage
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### 🌍 **Multi-Language Support**
+- **English (EN)** - Default
+- **Hindi (हिंदी)** - Complete translation
+- **Marathi (मराठी)** - Complete translation
+- Click "Language" in sidebar to cycle through languages
 
-## What technologies are used for this project?
+### 📱 **Responsive Design**
+- Mobile-first approach
+- Works on all devices (320px to 2560px+)
+- Collapsible sidebar with proper logo visibility
 
-This project is built with:
+## 🔧 Development
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Frontend Development
+```bash
+# Install dependencies
+npm install
 
-## How can I deploy this project?
+# Start development server
+npm run dev
 
-Simply open [Lovable](https://lovable.dev/projects/b1f0c269-f85f-4372-b2c6-56667c2ed904) and click on Share -> Publish.
+# Build for production
+npm run build
+```
 
-## Can I connect a custom domain to my Lovable project?
+### Full Stack Development
+```bash
+# Option 1: Single command (builds + runs)
+python app.py
 
-Yes, you can!
+# Option 2: Manual steps
+npm run build
+cd backend && python app.py
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Option 3: Platform scripts
+./run.sh        # Linux/Mac
+run.bat         # Windows
+python run.py   # Cross-platform
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📂 Project Structure
+
+```
+├── src/
+│   ├── components/          # React components
+│   ├── contexts/           # Language context
+│   ├── pages/              # Page components
+│   ├── services/           # API services (with mock fallback)
+│   └── lib/                # Utilities
+├── backend/                # Flask backend
+│   ├── app.py             # Main Flask app
+│   └── README.md          # Backend docs
+├── app.py                 # Single-command startup
+└── dist/                  # Built React app
+```
+
+## 🎯 Language Implementation
+
+### Switching Languages
+The sidebar "Language" button cycles through:
+1. **English** → **Hindi** → **Marathi** → **English**
+
+### Adding Translations
+Edit `src/contexts/LanguageContext.tsx`:
+
+```typescript
+const translations = {
+  en: { 'key': 'English text' },
+  hi: { 'key': 'हिंदी टेक्स्ट' },
+  mr: { 'key': 'मराठी मजकूर' }
+};
+```
+
+### Using Translations
+```typescript
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const Component = () => {
+  const { t } = useLanguage();
+  return <h1>{t('nav.welcome')}</h1>;
+};
+```
+
+## 🎨 Theme Implementation
+
+### Manual Theme Switching
+```typescript
+import { useTheme } from 'next-themes';
+
+const Component = () => {
+  const { theme, setTheme } = useTheme();
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+  return <button onClick={toggleTheme}>Toggle Theme</button>;
+};
+```
+
+## 🔄 API Architecture
+
+### Development Mode
+- Uses mock data when backend unavailable
+- Automatic fallback to local data
+- All UI features work without backend
+
+### Production Mode
+- Full Flask REST API
+- Real-time data processing
+- Database integration ready
+
+## 📊 Performance Optimizations
+
+- **Bundle Size:** ~892KB (254KB gzipped)
+- **Dependencies:** Minimized to essential packages only
+- **Loading:** Fast initial render with mock data
+- **Memory:** Optimized React context usage
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- React 18 + TypeScript
+- Tailwind CSS + shadcn/ui
+- Vite (build tool)
+- next-themes (theme switching)
+
+**Backend:**
+- Flask + Python
+- CORS enabled
+- Static file serving
+
+## VS Code Usage
+
+1. Open project in VS Code
+2. Open terminal (`Ctrl+` `)
+3. Run development: `npm run dev`
+4. Or run production: `python app.py`
+
+## 📱 Mobile Features
+
+- Touch-friendly sidebar navigation
+- Responsive categories grid
+- Mobile-optimized typography
+- Gesture support for theme/language switching
+
+## 🌐 Offline Support
+
+- Works completely offline in development mode
+- Service worker ready for PWA conversion
+- Local storage for preferences
+- Mock data ensures functionality
+
+## 🔐 Security
+
+- No external API calls in dev mode
+- CORS properly configured
+- XSS protection with React
+- Safe HTML rendering
+
+---
+
+**Sahaayak** - Your reliable wholesale marketplace companion! 🚀
