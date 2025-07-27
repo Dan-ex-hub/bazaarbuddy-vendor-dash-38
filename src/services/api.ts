@@ -278,7 +278,17 @@ class ApiService {
       const response = await fetch('/api/logout', {
         method: 'POST',
       });
-      return response.json();
+
+      if (!response.ok) {
+        return { success: true };
+      }
+
+      const text = await response.text();
+      if (!text) {
+        return { success: true };
+      }
+
+      return JSON.parse(text);
     } catch (error) {
       return { success: true };
     }
