@@ -361,5 +361,9 @@ def serve_frontend_routes(path):
     return jsonify({"error": "Not found"}), 404
 
 if __name__ == '__main__':
+    print("🗄️ Initializing database...")
     init_db()
+    print("✅ Database ready")
+    print("🌐 Starting Sahaayak server on http://localhost:5000")
+    print("📱 Access the app at: http://localhost:5000")
     app.run(debug=True, host='0.0.0.0', port=5000)
