@@ -18,6 +18,13 @@ import FoodDonationBanner from "@/components/FoodDonationBanner";
 
 const Index = () => {
   const { t } = useLanguage();
+  const { getCartItemsCount, getCartTotal } = useCart();
+  const navigate = useNavigate();
+
+  const handleCartClick = () => {
+    navigate('/cart');
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
