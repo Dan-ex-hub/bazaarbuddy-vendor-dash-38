@@ -160,9 +160,10 @@ const LoginPage = () => {
                 </form>
                 <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
                   <p className="text-sm text-blue-700 dark:text-blue-300">
-                    <strong>Demo Vendor:</strong><br />
-                    Phone: 9876543210<br />
-                    Password: vendor123
+                    <strong>Demo Vendors:</strong><br />
+                    • Raj Patel: 9876543210 / vendor123<br />
+                    • Priya Shah: 9876543211 / vendor123<br />
+                    • Amit Kumar: 9876543212 / vendor123
                   </p>
                 </div>
               </CardContent>
@@ -215,9 +216,10 @@ const LoginPage = () => {
                 </form>
                 <div className="mt-4 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
                   <p className="text-sm text-green-700 dark:text-green-300">
-                    <strong>Demo Wholesaler:</strong><br />
-                    Phone: 9999999999<br />
-                    Password: password123
+                    <strong>Demo Wholesalers:</strong><br />
+                    • Mumbai Fresh Mart: 9999999999 / password123<br />
+                    • Gupta Fresh Veggies: 9000000001 / gupta123<br />
+                    • Sharma Masala: 9000000002 / sharma123
                   </p>
                 </div>
               </CardContent>

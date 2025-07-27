@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -22,14 +23,47 @@ const WholesalerDashboard = () => {
   const { user, logout } = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleLogout = () => {
     logout();
     navigate('/');
   };
 
+  const handleAddProduct = () => {
+    toast({
+      title: "Add Product",
+      description: "Product form would open here. Adding mock product to your inventory.",
+    });
+
+    // Simulate adding a new product
+    const newProduct = {
+      id: Date.now(),
+      name: "New Product",
+      category: "Vegetables",
+      price: 50,
+      stock: 100,
+      status: "In Stock"
+    };
+
+    // Update products state (for demo purposes)
+    setProducts(prev => [...prev, newProduct]);
+
+    toast({
+      title: "Product Added Successfully!",
+      description: `${newProduct.name} has been added to your inventory.`,
+    });
+  };
+
+  const handleEditProduct = (product: any) => {
+    toast({
+      title: "Edit Product",
+      description: `Editing ${product.name}. Product edit form would open here.`,
+    });
+  };
+
   // Mock data for wholesaler dashboard
-  const [products] = useState([
+  const [products, setProducts] = useState([
     { id: 1, name: "Organic Tomatoes", category: "Vegetables", price: 45, stock: 500, status: "In Stock" },
     { id: 2, name: "Fresh Spinach", category: "Vegetables", price: 25, stock: 200, status: "Low Stock" },
     { id: 3, name: "Premium Carrots", category: "Vegetables", price: 35, stock: 300, status: "In Stock" },
@@ -149,7 +183,7 @@ const WholesalerDashboard = () => {
           <TabsContent value="products" className="space-y-4">
             <div className="flex justify-between items-center">
               <h3 className="text-lg font-semibold">Your Products</h3>
-              <Button>
+              <Button onClick={handleAddProduct}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Product
               </Button>
@@ -186,7 +220,12 @@ const WholesalerDashboard = () => {
                       </div>
                     </div>
                     <div className="flex space-x-2 mt-4">
-                      <Button variant="outline" size="sm" className="flex-1">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => handleEditProduct(product)}
+                      >
                         <Edit className="w-3 h-3 mr-1" />
                         Edit
                       </Button>

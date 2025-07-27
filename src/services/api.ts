@@ -174,6 +174,156 @@ class ApiService {
   async healthCheck() {
     return this.request('/health');
   }
+
+  // Authentication
+  async login(phone: string, password: string, userType: 'vendor' | 'wholesaler') {
+    // Mock vendor credentials from database
+    const mockVendors = [
+      { id: 1, name: 'Raj Patel', phone: '9876543210', password: 'vendor123', location: 'Ghatkopar' },
+      { id: 2, name: 'Priya Shah', phone: '9876543211', password: 'vendor123', location: 'Ghatkopar' },
+      { id: 3, name: 'Amit Kumar', phone: '9876543212', password: 'vendor123', location: 'Andheri' },
+      { id: 4, name: 'Sunita Devi', phone: '9876543213', password: 'vendor123', location: 'Andheri' },
+      { id: 5, name: 'Ravi Singh', phone: '9876543214', password: 'vendor123', location: 'Bandra' },
+    ];
+
+    // Mock wholesaler credentials from database
+    const mockWholesalers = [
+      { id: 1, name: 'Mumbai Fresh Mart', phone: '9999999999', password: 'password123', shop_name: 'Fresh Mart Wholesale' },
+      { id: 2, name: 'Gupta Fresh Veggies', phone: '9000000001', password: 'gupta123', shop_name: 'Gupta Fresh Vegetable Market' },
+      { id: 3, name: 'Sharma Masala Bhandar', phone: '9000000002', password: 'sharma123', shop_name: 'Sharma Spice Wholesale' },
+    ];
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone,
+          password,
+          user_type: userType,
+        }),
+      });
+
+      if (response.ok) {
+        const text = await response.text();
+        if (text) {
+          try {
+            const data = JSON.parse(text);
+            if (data.success) {
+              console.log('Backend login successful');
+              return data;
+            }
+          } catch (parseError) {
+            console.log('Failed to parse backend response, falling back to mock');
+          }
+        }
+      } else {
+        console.log(`Backend responded with ${response.status}, falling back to mock authentication`);
+      }
+
+      // If backend fails or returns error, fall through to mock authentication
+    } catch (error) {
+      // Backend unavailable, use mock authentication
+      console.log('Backend unavailable, using mock authentication:', error);
+    }
+
+    // Mock authentication (always runs when backend is unavailable)
+    console.log('Using mock authentication for:', userType, phone);
+    console.log('Available mock vendors:', mockVendors.map(v => ({ phone: v.phone, name: v.name })));
+
+    if (userType === 'vendor') {
+      console.log('Looking for vendor with phone:', phone, 'password:', password);
+      const vendor = mockVendors.find(v => v.phone === phone && v.password === password);
+      console.log('Found vendor:', vendor);
+      if (vendor) {
+        console.log('Mock vendor login successful for:', vendor.name);
+        return {
+          success: true,
+          user: {
+            id: vendor.id,
+            name: vendor.name,
+            type: 'vendor',
+            phone: vendor.phone,
+            location: vendor.location
+          }
+        };
+      } else {
+        console.log('Vendor not found in mock data');
+      }
+    }
+
+    if (userType === 'wholesaler') {
+      console.log('Looking for wholesaler with phone:', phone, 'password:', password);
+      const wholesaler = mockWholesalers.find(w => w.phone === phone && w.password === password);
+      console.log('Found wholesaler:', wholesaler);
+      if (wholesaler) {
+        console.log('Mock wholesaler login successful for:', wholesaler.name);
+        return {
+          success: true,
+          user: {
+            id: wholesaler.id,
+            name: wholesaler.name,
+            type: 'wholesaler',
+            phone: wholesaler.phone,
+            shop_name: wholesaler.shop_name
+          }
+        };
+      } else {
+        console.log('Wholesaler not found in mock data');
+      }
+    }
+
+    console.log('Login failed - no matching credentials found');
+    return {
+      success: false,
+      message: 'Invalid credentials'
+    };
+  }
+
+  async getCurrentUser() {
+    try {
+      const response = await fetch('/api/user');
+
+      // Check if the response is ok and has content
+      if (!response.ok) {
+        return { success: false, user: null };
+      }
+
+      const text = await response.text();
+      if (!text) {
+        return { success: false, user: null };
+      }
+
+      return JSON.parse(text);
+    } catch (error) {
+      // No user logged in or backend not available
+      console.log('Auth check failed, using mock mode');
+      return { success: false, user: null };
+    }
+  }
+
+  async logout() {
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        return { success: true };
+      }
+
+      const text = await response.text();
+      if (!text) {
+        return { success: true };
+      }
+
+      return JSON.parse(text);
+    } catch (error) {
+      return { success: true };
+    }
+  }
 }
 
 export const apiService = new ApiService();

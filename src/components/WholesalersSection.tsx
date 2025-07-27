@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Phone, Clock, TrendingUp } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface Wholesaler {
   id: string;
@@ -82,6 +84,16 @@ const wholesalers: Wholesaler[] = [
 
 const WholesalersSection = () => {
   const [sortBy, setSortBy] = useState<"rating" | "trust" | "price">("rating");
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleViewProducts = (wholesaler: Wholesaler) => {
+    toast({
+      title: "Loading products...",
+      description: `Showing products from ${wholesaler.name}`,
+    });
+    navigate(`/products?search=${encodeURIComponent(wholesaler.name)}`);
+  };
 
   const sortedWholesalers = [...wholesalers].sort((a, b) => {
     switch (sortBy) {
@@ -207,7 +219,10 @@ const WholesalersSection = () => {
                     Trust Score: {wholesaler.trustScore}%
                   </span>
                 </div>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl text-sm">
+                <Button
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl text-sm"
+                  onClick={() => handleViewProducts(wholesaler)}
+                >
                   View Products
                 </Button>
               </div>

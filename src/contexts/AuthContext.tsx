@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { apiService } from '@/services/api';
 
 export interface User {
   id: number;
@@ -30,9 +31,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch('/api/user');
-      const data = await response.json();
-      
+      const data = await apiService.getCurrentUser();
+
       if (data.success && data.user) {
         setUser(data.user);
       }
@@ -45,25 +45,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (phone: string, password: string, userType: 'vendor' | 'wholesaler'): Promise<boolean> => {
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phone,
-          password,
-          user_type: userType,
-        }),
-      });
-
-      const data = await response.json();
+      const data = await apiService.login(phone, password, userType);
 
       if (data.success) {
         setUser(data.user);
         return true;
       }
-      
+
       return false;
     } catch (error) {
       console.error('Login failed:', error);
@@ -73,9 +61,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch('/api/logout', {
-        method: 'POST',
-      });
+      await apiService.logout();
     } catch (error) {
       console.error('Logout failed:', error);
     } finally {

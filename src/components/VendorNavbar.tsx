@@ -13,12 +13,17 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const VendorNavbar = () => {
   const { language, setLanguage, t } = useLanguage();
-  
+
   const languages = [
     { code: "en", name: "English" },
     { code: "hi", name: "Hindi" },
     { code: "mr", name: "Marathi" }
   ];
+
+  const getCurrentLanguageName = () => {
+    const currentLang = languages.find(lang => lang.code === language);
+    return currentLang ? currentLang.name : "English";
+  };
 
   return (
     <nav className="bg-card border-b border-border shadow-card">
@@ -55,15 +60,15 @@ const VendorNavbar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="flex items-center space-x-2">
-                  <span>{selectedLanguage}</span>
+                  <span>{getCurrentLanguageName()}</span>
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-popover border border-border shadow-float">
                 {languages.map((lang) => (
-                  <DropdownMenuItem 
+                  <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setSelectedLanguage(lang.name)}
+                    onClick={() => setLanguage(lang.code)}
                     className="hover:bg-muted cursor-pointer"
                   >
                     {lang.name}

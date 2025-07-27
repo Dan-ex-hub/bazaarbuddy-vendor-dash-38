@@ -1,10 +1,10 @@
-import { 
-  Fish, 
-  Wheat, 
-  Bean, 
-  Sparkles, 
-  Cherry, 
-  Droplets, 
+import {
+  Fish,
+  Wheat,
+  Bean,
+  Sparkles,
+  Cherry,
+  Droplets,
   Snowflake,
   Apple,
   Milk,
@@ -15,11 +15,45 @@ import {
   Heart,
   Home
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 
 const CategoriesSection = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleCategoryClick = (category: any) => {
+    // Map category IDs to searchable terms
+    const categoryMap: Record<string, string> = {
+      "fruits-vegetables": "Vegetables",
+      "fish-seafood": "Fish & Seafood",
+      "dairy-eggs": "Dairy Products",
+      "flours": "Grains & Cereals",
+      "meat-poultry": "Meat",
+      "pulses": "Pulses",
+      "beverages": "Beverages",
+      "snacks-sweets": "Snacks",
+      "spices-seasonings": "Spices & Condiments",
+      "cleaning": "Cleaning",
+      "dry-fruits": "Dry Fruits",
+      "edible-oils": "Oils",
+      "frozen": "Frozen",
+      "personal-care": "Personal Care",
+      "home-kitchen": "Kitchen"
+    };
+
+    const searchTerm = categoryMap[category.id] || category.id;
+
+    toast({
+      title: "Loading category...",
+      description: `Showing products in ${t(category.titleKey)}`,
+    });
+
+    navigate(`/products?category=${encodeURIComponent(searchTerm)}`);
+  };
 
   const categories = [
     {
@@ -138,9 +172,10 @@ const CategoriesSection = () => {
       
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
         {categories.map((category) => (
-          <Card 
-            key={category.id} 
+          <Card
+            key={category.id}
             className="cursor-pointer transition-all duration-200 hover:shadow-card hover:scale-105 border-0 shadow-soft"
+            onClick={() => handleCategoryClick(category)}
           >
             <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
               <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${category.bgColor} rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4`}>

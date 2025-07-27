@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session, send_file, jsonify
+from flask import Flask, render_template, redirect, url_for, request, flash, session, send_file, jsonify, send_from_directory
 from flask_cors import CORS
 import sqlite3
 import os
@@ -12,8 +12,8 @@ app.secret_key = 'your-secret-key-here'  # Change this in production
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 
-# Enable CORS for React frontend
-CORS(app, origins=["http://localhost:8080"])
+# Enable CORS for React frontend and local development
+CORS(app, origins=["http://localhost:8080", "http://localhost:5000", "http://127.0.0.1:5000"])
 
 # Ensure upload directory exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -328,6 +328,42 @@ def get_pay_later():
 def health_check():
     return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
 
+# Frontend serving routes
+@app.route('/')
+def serve_frontend():
+    """Serve the React frontend"""
+    dist_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'dist')
+    if os.path.exists(os.path.join(dist_path, 'index.html')):
+        return send_from_directory(dist_path, 'index.html')
+    else:
+        return jsonify({
+            "message": "Sahaayak Backend is running",
+            "status": "Frontend not built yet. Run 'npm run build' to build the frontend.",
+            "api_endpoints": "/api/",
+            "health": "/api/health"
+        })
+
+@app.route('/<path:path>')
+def serve_frontend_routes(path):
+    """Serve React frontend routes and static files"""
+    dist_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'dist')
+
+    # Check if it's a static file
+    if os.path.exists(os.path.join(dist_path, path)):
+        return send_from_directory(dist_path, path)
+
+    # For React Router, serve index.html for non-API routes
+    if not path.startswith('api/'):
+        if os.path.exists(os.path.join(dist_path, 'index.html')):
+            return send_from_directory(dist_path, 'index.html')
+
+    # 404 for other cases
+    return jsonify({"error": "Not found"}), 404
+
 if __name__ == '__main__':
+    print("🗄️ Initializing database...")
     init_db()
+    print("✅ Database ready")
+    print("🌐 Starting Sahaayak server on http://localhost:5000")
+    print("📱 Access the app at: http://localhost:5000")
     app.run(debug=True, host='0.0.0.0', port=5000)

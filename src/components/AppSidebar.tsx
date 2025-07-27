@@ -1,6 +1,7 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { 
   User, 
   ShoppingBag, 
@@ -29,6 +30,7 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
+  const { logout } = useAuth();
   const currentPath = location.pathname;
 
   const isCollapsed = state === "collapsed";
@@ -67,8 +69,8 @@ export function AppSidebar() {
         return;
       }
       if (url === "/logout") {
-        // Handle logout logic here
-        console.log("Logout clicked");
+        logout();
+        navigate("/login");
         return;
       }
     }
@@ -92,6 +94,7 @@ export function AppSidebar() {
   const sidebarItems = [
     { title: t('app.name'), url: "/", icon: Package, isHeader: true },
     { title: t('nav.profile'), url: "/profile", icon: User },
+    { title: "Shopping Cart", url: "/cart", icon: ShoppingBag },
     { title: t('nav.recent_orders'), url: "/orders", icon: ShoppingBag },
     { title: t('nav.payment_info'), url: "/payment", icon: CreditCard },
     { title: t('nav.offers_deals'), url: "/offers", icon: Tag },
