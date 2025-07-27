@@ -27,7 +27,7 @@ const VendorNavbar = () => {
           <div className="flex items-center">
             <Link to="/">
               <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent cursor-pointer">
-                BazaarBuddy
+                Sahaayak
               </h1>
             </Link>
           </div>
