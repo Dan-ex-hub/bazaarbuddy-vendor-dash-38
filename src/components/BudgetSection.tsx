@@ -116,6 +116,8 @@ const budgetItems: BudgetItem[] = [
 ];
 
 const BudgetSection = () => {
+  const { addToCart } = useCart();
+  const { toast } = useToast();
   const [maxBudget, setMaxBudget] = useState<string>("500");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"price" | "discount" | "savings">("discount");
