@@ -84,6 +84,16 @@ const wholesalers: Wholesaler[] = [
 
 const WholesalersSection = () => {
   const [sortBy, setSortBy] = useState<"rating" | "trust" | "price">("rating");
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleViewProducts = (wholesaler: Wholesaler) => {
+    toast({
+      title: "Loading products...",
+      description: `Showing products from ${wholesaler.name}`,
+    });
+    navigate(`/products?search=${encodeURIComponent(wholesaler.name)}`);
+  };
 
   const sortedWholesalers = [...wholesalers].sort((a, b) => {
     switch (sortBy) {
