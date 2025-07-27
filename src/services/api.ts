@@ -174,6 +174,83 @@ class ApiService {
   async healthCheck() {
     return this.request('/health');
   }
+
+  // Authentication
+  async login(phone: string, password: string, userType: 'vendor' | 'wholesaler') {
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone,
+          password,
+          user_type: userType,
+        }),
+      });
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      // Mock authentication for development
+      console.log('Using mock authentication');
+
+      // Mock vendor credentials
+      if (userType === 'vendor' && phone === '9876543210' && password === 'vendor123') {
+        return {
+          success: true,
+          user: {
+            id: 1,
+            name: 'Raj Patel',
+            type: 'vendor',
+            phone: '9876543210',
+            location: 'Ghatkopar'
+          }
+        };
+      }
+
+      // Mock wholesaler credentials
+      if (userType === 'wholesaler' && phone === '9999999999' && password === 'password123') {
+        return {
+          success: true,
+          user: {
+            id: 1,
+            name: 'Mumbai Fresh Mart',
+            type: 'wholesaler',
+            phone: '9999999999',
+            shop_name: 'Fresh Mart Wholesale'
+          }
+        };
+      }
+
+      return {
+        success: false,
+        message: 'Invalid credentials'
+      };
+    }
+  }
+
+  async getCurrentUser() {
+    try {
+      const response = await fetch('/api/user');
+      return response.json();
+    } catch (error) {
+      // No user logged in
+      return { success: false, user: null };
+    }
+  }
+
+  async logout() {
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+      });
+      return response.json();
+    } catch (error) {
+      return { success: true };
+    }
+  }
 }
 
 export const apiService = new ApiService();
