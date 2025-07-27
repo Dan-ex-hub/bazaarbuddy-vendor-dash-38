@@ -231,10 +231,14 @@ class ApiService {
 
     // Mock authentication (always runs when backend is unavailable)
     console.log('Using mock authentication for:', userType, phone);
+    console.log('Available mock vendors:', mockVendors.map(v => ({ phone: v.phone, name: v.name })));
 
     if (userType === 'vendor') {
+      console.log('Looking for vendor with phone:', phone, 'password:', password);
       const vendor = mockVendors.find(v => v.phone === phone && v.password === password);
+      console.log('Found vendor:', vendor);
       if (vendor) {
+        console.log('Mock vendor login successful for:', vendor.name);
         return {
           success: true,
           user: {
@@ -245,6 +249,8 @@ class ApiService {
             location: vendor.location
           }
         };
+      } else {
+        console.log('Vendor not found in mock data');
       }
     }
 
