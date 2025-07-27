@@ -35,13 +35,15 @@ Once started, open your browser and go to:
 ## ✨ All Features Now Working
 
 ### Vendor Side:
-✅ **Reorder Button** - Adds items to cart with success message  
-✅ **Pay Buttons** - Fake payment with success notifications  
-✅ **Add to Cart** - All inventory and budget items work  
-✅ **Voice Search** - Hindi/English support ("tamatar" → tomato)  
-✅ **Categories** - Click to filter products  
-✅ **Profile** - View/edit vendor profile  
-✅ **Orders** - Track order history  
+✅ **Shopping Cart** - Full cart with add/remove/quantity management
+✅ **Cart Icon** - Shows item count and total, click to view cart
+✅ **Reorder Button** - Adds items to cart with success message
+✅ **Pay Buttons** - Fake payment with success notifications
+✅ **Add to Cart** - All inventory and budget items work
+✅ **Voice Search** - Hindi/English support ("tamatar" → tomato)
+✅ **Categories** - Click to filter products
+✅ **Profile** - View/edit vendor profile
+✅ **Orders** - Track order history
 ✅ **Offers** - Browse and claim deals  
 
 ### Wholesaler Side:
@@ -60,7 +62,7 @@ Once started, open your browser and go to:
 
 ```
 sahaayak/
-├── app.py              # 🚀 Single command startup script
+├��─ app.py              # 🚀 Single command startup script
 ├── backend/            # 🐍 Flask API server
 ├── src/                # ⚛️ React frontend
 ├── dist/               # 📦 Built frontend (auto-generated)
