@@ -85,18 +85,18 @@ const PayLaterSection = () => {
             </span>
           </div>
           <Progress value={creditUsagePercentage} className="h-2" />
-          <div className="grid grid-cols-2 gap-4 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
             <div className="space-y-1">
-              <p className="text-2xl font-bold text-primary">
+              <p className="text-xl sm:text-2xl font-bold text-primary">
                 ₹{remainingCredit.toLocaleString()}
               </p>
-              <p className="text-sm text-muted-foreground">Available Credit</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">Available Credit</p>
             </div>
             <div className="space-y-1">
-              <p className="text-2xl font-bold text-foreground">
+              <p className="text-xl sm:text-2xl font-bold text-foreground">
                 ₹{ledger.usedCredit.toLocaleString()}
               </p>
-              <p className="text-sm text-muted-foreground">Used Credit</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">Used Credit</p>
             </div>
           </div>
         </div>
@@ -136,7 +136,7 @@ const PayLaterSection = () => {
         )}
 
         {/* Action Buttons */}
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <Link to="/pay-later" className="flex-1">
             <Button variant="outline" className="w-full">
               View Details
