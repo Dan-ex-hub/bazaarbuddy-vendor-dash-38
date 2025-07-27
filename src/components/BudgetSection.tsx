@@ -146,7 +146,22 @@ const BudgetSection = () => {
   const totalSavings = filteredItems.reduce((sum, item) => sum + item.estimatedSavings, 0);
 
   const handleAddToCart = (itemId: string) => {
-    console.log(`Adding item ${itemId} to cart`);
+    const item = budgetItems.find(i => i.id === itemId);
+    if (!item) return;
+
+    addToCart({
+      id: `budget-${itemId}-${Date.now()}`,
+      name: item.name,
+      price: item.price,
+      unit: item.unit,
+      category: item.category,
+      wholesaler: item.wholesaler
+    });
+
+    toast({
+      title: "Added to Cart!",
+      description: `${item.name} has been added to your cart. You're saving ₹${item.originalPrice - item.price}!`,
+    });
   };
 
   const renderStars = (rating: number) => {
