@@ -48,7 +48,7 @@ def main():
     
     # Install Python dependencies
     print("🐍 Installing Python dependencies...")
-    if not run_command("pip install flask flask-cors python-dotenv"):
+    if not run_command("pip install flask flask-cors"):
         print("❌ Failed to install Python dependencies")
         sys.exit(1)
     print("✅ Python dependencies installed")
