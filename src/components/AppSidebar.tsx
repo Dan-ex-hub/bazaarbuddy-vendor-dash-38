@@ -69,8 +69,8 @@ export function AppSidebar() {
         return;
       }
       if (url === "/logout") {
-        // Handle logout logic here
-        console.log("Logout clicked");
+        logout();
+        navigate("/login");
         return;
       }
     }
