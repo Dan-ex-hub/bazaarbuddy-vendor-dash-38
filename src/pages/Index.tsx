@@ -22,10 +22,8 @@ const Index = () => {
           {/* Top Header */}
           <header className="h-16 flex items-center justify-between px-6 border-b border-border bg-card">
             <div className="flex items-center space-x-4">
-              <SidebarTrigger asChild>
-                <Button variant="ghost" size="sm">
-                  <Menu className="h-4 w-4" />
-                </Button>
+              <SidebarTrigger>
+                <Menu className="h-4 w-4" />
               </SidebarTrigger>
               <h1 className="text-xl font-semibold text-foreground">
                 Welcome back!
