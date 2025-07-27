@@ -18,6 +18,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 const sidebarItems = [
@@ -32,16 +33,17 @@ const sidebarItems = [
 ];
 
 export function AppSidebar() {
+  const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
 
+  const isCollapsed = state === "collapsed";
   const isActive = (path: string) => currentPath === path;
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
     isActive ? "bg-primary/10 text-primary font-medium border-r-2 border-primary" : "hover:bg-muted/50 text-muted-foreground hover:text-foreground";
 
   return (
     <Sidebar
-      className="w-64"
       collapsible="icon"
     >
       <SidebarContent className="bg-card border-r border-border">
@@ -55,9 +57,11 @@ export function AppSidebar() {
                       <div className="p-2 bg-gradient-primary rounded-lg">
                         <item.icon className="h-5 w-5 text-white" />
                       </div>
-                      <span className="text-lg font-bold bg-gradient-primary bg-clip-text text-transparent">
-                        {item.title}
-                      </span>
+                      {!isCollapsed && (
+                        <span className="text-lg font-bold bg-gradient-primary bg-clip-text text-transparent">
+                          {item.title}
+                        </span>
+                      )}
                     </div>
                   ) : (
                     <SidebarMenuButton asChild>
@@ -66,7 +70,7 @@ export function AppSidebar() {
                         className={({ isActive }) => `flex items-center space-x-3 px-3 py-3 transition-all duration-200 ${getNavCls({ isActive })} ${item.isAction ? 'text-destructive hover:text-destructive hover:bg-destructive/10' : ''}`}
                       >
                         <item.icon className="h-5 w-5 flex-shrink-0" />
-                        <span className="text-sm font-medium">{item.title}</span>
+                        {!isCollapsed && <span className="text-sm font-medium">{item.title}</span>}
                       </NavLink>
                     </SidebarMenuButton>
                   )}

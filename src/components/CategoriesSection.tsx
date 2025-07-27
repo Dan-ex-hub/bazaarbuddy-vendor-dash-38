@@ -1,55 +1,127 @@
-import { Fish, Wheat, Bean, Sparkles, Cherry, Droplets, Snowflake } from "lucide-react";
+import { 
+  Fish, 
+  Wheat, 
+  Bean, 
+  Sparkles, 
+  Cherry, 
+  Droplets, 
+  Snowflake,
+  Apple,
+  Milk,
+  ChefHat,
+  Coffee,
+  Candy,
+  Flame,
+  Heart,
+  Home
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const categories = [
   {
+    id: "fruits-vegetables",
+    title: "Fruits & Vegetables",
+    icon: Apple,
+    bgColor: "bg-green-100",
+    iconColor: "text-green-600"
+  },
+  {
     id: "fish-seafood",
     title: "Fish & Seafood",
     icon: Fish,
-    bgColor: "bg-green-100",
-    iconColor: "text-red-500"
+    bgColor: "bg-blue-100",
+    iconColor: "text-blue-600"
   },
   {
-    id: "flours",
-    title: "Flours",
-    icon: Wheat,
+    id: "dairy-eggs",
+    title: "Dairy & Eggs",
+    icon: Milk,
     bgColor: "bg-yellow-100",
     iconColor: "text-yellow-600"
   },
   {
+    id: "flours",
+    title: "Flours & Grains",
+    icon: Wheat,
+    bgColor: "bg-amber-100",
+    iconColor: "text-amber-700"
+  },
+  {
+    id: "meat-poultry",
+    title: "Meat & Poultry",
+    icon: ChefHat,
+    bgColor: "bg-red-100",
+    iconColor: "text-red-600"
+  },
+  {
     id: "pulses",
-    title: "Pulses",
+    title: "Pulses & Legumes",
     icon: Bean,
-    bgColor: "bg-green-100",
-    iconColor: "text-red-700"
+    bgColor: "bg-orange-100",
+    iconColor: "text-orange-600"
+  },
+  {
+    id: "beverages",
+    title: "Beverages",
+    icon: Coffee,
+    bgColor: "bg-purple-100",
+    iconColor: "text-purple-600"
+  },
+  {
+    id: "snacks-sweets",
+    title: "Snacks & Sweets",
+    icon: Candy,
+    bgColor: "bg-pink-100",
+    iconColor: "text-pink-600"
+  },
+  {
+    id: "spices-seasonings",
+    title: "Spices & Seasonings",
+    icon: Flame,
+    bgColor: "bg-rose-100",
+    iconColor: "text-rose-600"
   },
   {
     id: "cleaning",
-    title: "Cleaning & Consumables",
+    title: "Cleaning & Care",
     icon: Sparkles,
-    bgColor: "bg-blue-100",
-    iconColor: "text-orange-500"
+    bgColor: "bg-cyan-100",
+    iconColor: "text-cyan-600"
   },
   {
     id: "dry-fruits",
     title: "Dry Fruits & Nuts",
     icon: Cherry,
-    bgColor: "bg-orange-100",
-    iconColor: "text-amber-700"
+    bgColor: "bg-emerald-100",
+    iconColor: "text-emerald-600"
   },
   {
     id: "edible-oils",
     title: "Edible Oils",
     icon: Droplets,
-    bgColor: "bg-yellow-100",
-    iconColor: "text-green-600"
+    bgColor: "bg-lime-100",
+    iconColor: "text-lime-600"
   },
   {
     id: "frozen",
-    title: "Frozen & Instant Food",
+    title: "Frozen & Instant",
     icon: Snowflake,
-    bgColor: "bg-blue-100",
-    iconColor: "text-blue-500"
+    bgColor: "bg-sky-100",
+    iconColor: "text-sky-600"
+  },
+  {
+    id: "personal-care",
+    title: "Personal Care",
+    icon: Heart,
+    bgColor: "bg-violet-100",
+    iconColor: "text-violet-600"
+  },
+  {
+    id: "home-kitchen",
+    title: "Home & Kitchen",
+    icon: Home,
+    bgColor: "bg-teal-100",
+    iconColor: "text-teal-600"
   }
 ];
 
@@ -61,7 +133,7 @@ const CategoriesSection = () => {
         <p className="text-muted-foreground">Explore our wide range of products</p>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {categories.map((category) => (
           <Card 
             key={category.id} 
