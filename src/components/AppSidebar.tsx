@@ -94,6 +94,7 @@ export function AppSidebar() {
   const sidebarItems = [
     { title: t('app.name'), url: "/", icon: Package, isHeader: true },
     { title: t('nav.profile'), url: "/profile", icon: User },
+    { title: "Shopping Cart", url: "/cart", icon: ShoppingBag },
     { title: t('nav.recent_orders'), url: "/orders", icon: ShoppingBag },
     { title: t('nav.payment_info'), url: "/payment", icon: CreditCard },
     { title: t('nav.offers_deals'), url: "/offers", icon: Tag },
