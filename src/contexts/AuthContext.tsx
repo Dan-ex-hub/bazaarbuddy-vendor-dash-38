@@ -31,9 +31,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch('/api/user');
-      const data = await response.json();
-      
+      const data = await apiService.getCurrentUser();
+
       if (data.success && data.user) {
         setUser(data.user);
       }
