@@ -13,12 +13,17 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const VendorNavbar = () => {
   const { language, setLanguage, t } = useLanguage();
-  
+
   const languages = [
     { code: "en", name: "English" },
     { code: "hi", name: "Hindi" },
     { code: "mr", name: "Marathi" }
   ];
+
+  const getCurrentLanguageName = () => {
+    const currentLang = languages.find(lang => lang.code === language);
+    return currentLang ? currentLang.name : "English";
+  };
 
   return (
     <nav className="bg-card border-b border-border shadow-card">
