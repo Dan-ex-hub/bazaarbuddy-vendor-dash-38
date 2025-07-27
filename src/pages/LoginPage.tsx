@@ -216,9 +216,10 @@ const LoginPage = () => {
                 </form>
                 <div className="mt-4 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
                   <p className="text-sm text-green-700 dark:text-green-300">
-                    <strong>Demo Wholesaler:</strong><br />
-                    Phone: 9999999999<br />
-                    Password: password123
+                    <strong>Demo Wholesalers:</strong><br />
+                    • Mumbai Fresh Mart: 9999999999 / password123<br />
+                    • Gupta Fresh Veggies: 9000000001 / gupta123<br />
+                    • Sharma Masala: 9000000002 / sharma123
                   </p>
                 </div>
               </CardContent>
