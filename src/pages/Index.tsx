@@ -1,4 +1,6 @@
-import VendorNavbar from "@/components/VendorNavbar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
+import CategoriesSection from "@/components/CategoriesSection";
 import VoiceSearchBar from "@/components/VoiceSearchBar";
 import RecentOrdersSection from "@/components/RecentOrdersSection";
 import InventorySection from "@/components/InventorySection";
@@ -7,63 +9,82 @@ import WholesalersSection from "@/components/WholesalersSection";
 import BudgetSection from "@/components/BudgetSection";
 import PayLaterSection from "@/components/PayLaterSection";
 import FoodDonationBanner from "@/components/FoodDonationBanner";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Top Navbar */}
-      <VendorNavbar />
-      
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Welcome, Vendor!
-          </h1>
-          
-          {/* Voice Search Bar */}
-          <div className="mb-8">
-            <VoiceSearchBar />
-          </div>
-        </div>
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full bg-background">
+        <AppSidebar />
         
-        {/* Recent Orders Section */}
-        <div className="mb-12">
-          <RecentOrdersSection />
+        <div className="flex-1 flex flex-col">
+          {/* Top Header */}
+          <header className="h-16 flex items-center justify-between px-6 border-b border-border bg-card">
+            <div className="flex items-center space-x-4">
+              <SidebarTrigger asChild>
+                <Button variant="ghost" size="sm">
+                  <Menu className="h-4 w-4" />
+                </Button>
+              </SidebarTrigger>
+              <h1 className="text-xl font-semibold text-foreground">
+                Welcome back!
+              </h1>
+            </div>
+          </header>
+
+          {/* Main Content */}
+          <main className="flex-1 overflow-auto">
+            <div className="max-w-7xl mx-auto px-6 py-8">
+              {/* Voice Search Bar */}
+              <div className="mb-8">
+                <VoiceSearchBar />
+              </div>
+
+              {/* Categories Section */}
+              <div className="mb-12">
+                <CategoriesSection />
+              </div>
+              
+              {/* Recent Orders Section */}
+              <div className="mb-12">
+                <RecentOrdersSection />
+              </div>
+              
+              {/* Budget Section */}
+              <div className="mb-12">
+                <BudgetSection />
+              </div>
+              
+              {/* Pay Later Section */}
+              <div className="mb-12">
+                <PayLaterSection />
+              </div>
+              
+              {/* Food Donation Banner */}
+              <div className="mb-12">
+                <FoodDonationBanner />
+              </div>
+              
+              {/* Inventory Section */}
+              <div className="mb-12">
+                <InventorySection />
+              </div>
+              
+              {/* Wholesalers Section */}
+              <div className="mb-12">
+                <WholesalersSection />
+              </div>
+              
+              {/* Reviews Section */}
+              <div className="mb-8">
+                <ReviewsSection />
+              </div>
+            </div>
+          </main>
         </div>
-        
-        {/* Budget Section */}
-        <div className="mb-12">
-          <BudgetSection />
-        </div>
-        
-        {/* Pay Later Section */}
-        <div className="mb-12">
-          <PayLaterSection />
-        </div>
-        
-        {/* Food Donation Banner */}
-        <div className="mb-12">
-          <FoodDonationBanner />
-        </div>
-        
-        {/* Inventory Section */}
-        <div className="mb-12">
-          <InventorySection />
-        </div>
-        
-        {/* Wholesalers Section */}
-        <div className="mb-12">
-          <WholesalersSection />
-        </div>
-        
-        {/* Reviews Section */}
-        <div className="mb-8">
-          <ReviewsSection />
-        </div>
-      </main>
-    </div>
+      </div>
+    </SidebarProvider>
   );
 };
 
