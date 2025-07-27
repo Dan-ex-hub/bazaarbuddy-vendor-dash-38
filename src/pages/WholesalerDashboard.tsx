@@ -23,10 +23,43 @@ const WholesalerDashboard = () => {
   const { user, logout } = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleLogout = () => {
     logout();
     navigate('/');
+  };
+
+  const handleAddProduct = () => {
+    toast({
+      title: "Add Product",
+      description: "Product form would open here. Adding mock product to your inventory.",
+    });
+
+    // Simulate adding a new product
+    const newProduct = {
+      id: Date.now(),
+      name: "New Product",
+      category: "Vegetables",
+      price: 50,
+      stock: 100,
+      status: "In Stock"
+    };
+
+    // Update products state (for demo purposes)
+    setProducts(prev => [...prev, newProduct]);
+
+    toast({
+      title: "Product Added Successfully!",
+      description: `${newProduct.name} has been added to your inventory.`,
+    });
+  };
+
+  const handleEditProduct = (product: any) => {
+    toast({
+      title: "Edit Product",
+      description: `Editing ${product.name}. Product edit form would open here.`,
+    });
   };
 
   // Mock data for wholesaler dashboard
