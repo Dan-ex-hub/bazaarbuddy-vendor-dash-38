@@ -35,6 +35,7 @@ const sidebarItems = [
 export function AppSidebar() {
   const { state, toggleSidebar } = useSidebar();
   const location = useLocation();
+  const navigate = useNavigate();
   const currentPath = location.pathname;
 
   const isCollapsed = state === "collapsed";
@@ -47,6 +48,20 @@ export function AppSidebar() {
     if (e.target === e.currentTarget) {
       toggleSidebar();
     }
+  };
+
+  const handleLinkClick = (e: React.MouseEvent, url: string) => {
+    // Check for modifier keys
+    if (e.ctrlKey || e.metaKey) {
+      // Ctrl+click or Cmd+click - open in new tab
+      e.preventDefault();
+      window.open(url, '_blank');
+    } else if (e.shiftKey) {
+      // Shift+click - open in new window
+      e.preventDefault();
+      window.open(url, '_blank');
+    }
+    // Otherwise, let React Router handle normal navigation
   };
 
   return (
