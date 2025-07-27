@@ -62,7 +62,7 @@ Once started, open your browser and go to:
 
 ```
 sahaayak/
-├��─ app.py              # 🚀 Single command startup script
+├── app.py              # 🚀 Single command startup script
 ├── backend/            # 🐍 Flask API server
 ├── src/                # ⚛️ React frontend
 ├── dist/               # 📦 Built frontend (auto-generated)
@@ -87,7 +87,8 @@ npm run build
 ## 💡 Features Overview
 
 - **Dual Interface**: Separate dashboards for vendors and wholesalers
-- **Real Shopping Cart**: Add/remove items with quantity management
+- **Real Shopping Cart**: Full cart page with add/remove/quantity management and checkout
+- **Cart Icon**: Shows live item count and total across all pages
 - **Voice Search**: Hindi and English voice recognition
 - **Payment System**: Fake payment processing with success feedback
 - **Order Management**: Complete order tracking and history
