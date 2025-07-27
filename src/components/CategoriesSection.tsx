@@ -129,21 +129,21 @@ const CategoriesSection = () => {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-foreground mb-2">Our Categories</h2>
-        <p className="text-muted-foreground">Explore our wide range of products</p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Our Categories</h2>
+        <p className="text-sm sm:text-base text-muted-foreground">Explore our wide range of products</p>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
         {categories.map((category) => (
           <Card 
             key={category.id} 
             className="cursor-pointer transition-all duration-200 hover:shadow-card hover:scale-105 border-0 shadow-soft"
           >
-            <CardContent className="p-6 text-center">
-              <div className={`w-16 h-16 ${category.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
-                <category.icon className={`h-8 w-8 ${category.iconColor}`} />
+            <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
+              <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${category.bgColor} rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4`}>
+                <category.icon className={`h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 ${category.iconColor}`} />
               </div>
-              <h3 className="font-semibold text-sm text-foreground leading-tight">
+              <h3 className="font-semibold text-xs sm:text-sm text-foreground leading-tight">
                 {category.title}
               </h3>
             </CardContent>
