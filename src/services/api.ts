@@ -209,17 +209,24 @@ class ApiService {
       if (response.ok) {
         const text = await response.text();
         if (text) {
-          const data = JSON.parse(text);
-          if (data.success) {
-            return data;
+          try {
+            const data = JSON.parse(text);
+            if (data.success) {
+              console.log('Backend login successful');
+              return data;
+            }
+          } catch (parseError) {
+            console.log('Failed to parse backend response, falling back to mock');
           }
         }
+      } else {
+        console.log(`Backend responded with ${response.status}, falling back to mock authentication`);
       }
 
-      // If backend fails, fall through to mock authentication
+      // If backend fails or returns error, fall through to mock authentication
     } catch (error) {
       // Backend unavailable, use mock authentication
-      console.log('Backend unavailable, using mock authentication');
+      console.log('Backend unavailable, using mock authentication:', error);
     }
 
     // Mock authentication (always runs when backend is unavailable)
