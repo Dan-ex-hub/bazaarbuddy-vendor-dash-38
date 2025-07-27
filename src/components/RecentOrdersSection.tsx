@@ -1,4 +1,6 @@
 import ReorderCard from "./ReorderCard";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface RecentOrder {
   id: string;
