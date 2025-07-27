@@ -22,6 +22,38 @@ import { useToast } from "@/hooks/use-toast";
 
 const CategoriesSection = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleCategoryClick = (category: any) => {
+    // Map category IDs to searchable terms
+    const categoryMap: Record<string, string> = {
+      "fruits-vegetables": "Vegetables",
+      "fish-seafood": "Fish & Seafood",
+      "dairy-eggs": "Dairy Products",
+      "flours": "Grains & Cereals",
+      "meat-poultry": "Meat",
+      "pulses": "Pulses",
+      "beverages": "Beverages",
+      "snacks-sweets": "Snacks",
+      "spices-seasonings": "Spices & Condiments",
+      "cleaning": "Cleaning",
+      "dry-fruits": "Dry Fruits",
+      "edible-oils": "Oils",
+      "frozen": "Frozen",
+      "personal-care": "Personal Care",
+      "home-kitchen": "Kitchen"
+    };
+
+    const searchTerm = categoryMap[category.id] || category.id;
+
+    toast({
+      title: "Loading category...",
+      description: `Showing products in ${t(category.titleKey)}`,
+    });
+
+    navigate(`/products?category=${encodeURIComponent(searchTerm)}`);
+  };
 
   const categories = [
     {
